@@ -21,9 +21,9 @@ df["tekst"] = df["tekst"].str.lower()
 tokenized_tekst = [word_tokenize(str(sentence)) for sentence in tekst_label ]
 sent_token_tekst = [sent_tokenize(str(sentence)) for sentence in tekst_label]
 
+
+############-Scrypt do znajdowania przymiotnikow/rzeczownikow/symboli itp. w tekscie-################
 stop_words = stopwords.words('english')
-print(df)
-############-Scrypt do znajdowania przymiotnikow/rzeczownikow/symboli itp. w tekscie-################333
 data_tagged = []
 for line in sent_token_tekst:
     for sentence in line:
@@ -34,9 +34,9 @@ for word in data_tagged:
         print(word)
 
 
+############-Scrypt do tokenizacji słów w tekscie-################
 
 New_list = []
-New_list1 = []
 for sentence in tokenized_tekst:
     for word in sentence:
         if word not in stop_words:
@@ -45,11 +45,8 @@ for sentence in tokenized_tekst:
 ps = PorterStemmer()
 stemed_list = [ps.stem(str(sentence)) for sentence in New_list]
 
-#print(tokenized_tekst)
-#print(stemed_list)
-for sentence in sent_token_tekst:
-    for word in sentence:
-        print()
+print(tokenized_tekst)
+print(stemed_list)
 
 
 
