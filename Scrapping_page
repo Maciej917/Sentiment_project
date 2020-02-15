@@ -14,6 +14,7 @@ class Scrapbot:
         self.bot = webdriver.Chrome("C:\Pliki własne\webdrivers\chromedriver")
         self.company = company
 
+#######Funkcja openpage otwiera Reutersa na stronie danej firmy########
 
     def openpage(self):
         url = "https://www.reuters.com/companies/{}.OQ".format(self.company)
@@ -23,6 +24,9 @@ class Scrapbot:
         cockie = bot.find_element_by_id("_evidon-banner-acceptbutton")
         cockie.click()
         time.sleep(1)
+
+########Funkcja scrap_list_of_art ściąga ze strony linki do artykułów. Wywołująć funkcję możemy wybrać ilość razy jaką funkcja
+        przescrolluje stronę w poszukiwaniu artykułów##########
 
     def scrap_list_of_art(self, times_of_scroll=0):
         bot = self.bot
@@ -37,7 +41,7 @@ class Scrapbot:
         art_url_list_json = json.dumps(art_heads_url_list)
         with open('art_list_json.json','w') as art_list_json:
             json.dump(art_heads_url_list, art_list_json, indent=2)
-
+#########Funkcja wyłącza webdriver#########
     def end(self):
         bot = self.bot
         bot.close()
