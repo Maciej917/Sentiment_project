@@ -15,6 +15,8 @@ class CSV_manipulation(object):
         return csv_list[object_number_in_file]
 
 
+
+
     def write_csv(self, input):
         """Metoda zapisująca 'input' do 'csv_file' """
         with open(self.csv_file, 'w') as csv_file:

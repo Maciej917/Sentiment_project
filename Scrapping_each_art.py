@@ -36,14 +36,13 @@ class Scrapping_art_page:
             art_database.append([article_title, article_date, art_paragraps])
 
         df = pd.DataFrame(art_database, columns = ['title', 'date', 'body'])
-        CSV_manipulation("art_body_text.csv").write_csv(df)
+        df.to_csv("art_body_text.csv", header=True, index=True)
         return df
 
 
 
 ################# Przykładowe wywołanie #######################
 
-#scrap = Scrapping_art_page('art_list.csv')
-#print(scrap.Scrapping_articles('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Safari/537.36').head(5))
+print(Scrapping_art_page().Scrapping_articles('art_list.csv', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Safari/537.36').head(5))
 
 
