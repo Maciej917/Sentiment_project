@@ -6,7 +6,7 @@ from Scrapping_each_art import Scrapping_art_page
 
 class Main_program:
     """ Tutaj będziemy puszczać nasz główny program. Narazie to placeholder. """
-    Scrapping_begin = Scrapbot('GOOGL')
+    Scrapping_begin = Scrapbot()
     Scrapping_begin.openpage()
     Scrapping_begin.scrap_list_of_art(10)
     Scrapping_begin.end()

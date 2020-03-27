@@ -22,12 +22,16 @@ class Scrapping_art_page:
             art_title = page_soup.find('h1', class_='ArticleHeader_headline')
             art_date = page_soup.find('div', class_='ArticleHeader_date')
             art_body = page_soup.find('div', class_='StandardArticleBody_body')
+            print("$$$$$$$$$$$$$$$$$$444")
+            print(type(art_body))
             article_title = art_title.get_text()
             article_date = art_date.get_text()
             art_paragraps = []
             try:
                 p_num = 0
                 for p in art_body:
+                    print(type(p))
+                    print(p)
                     if p.name == 'p':
                         p_num += 1
                         art_paragraps.append(p.get_text())
@@ -35,9 +39,10 @@ class Scrapping_art_page:
                 print("Something has fucked up")
             art_database.append([article_title, article_date, art_paragraps])
 
-        df = pd.DataFrame(art_database, columns = ['title', 'date', 'body'])
-        df.to_csv("art_body_text.csv", header=True, index=True)
-        return df
+        #df = pd.DataFrame(art_database, columns = ['title', 'date', 'body'])
+        #df.to_csv("art_body_text.csv", header=True, index=True)
+        # return df
+
 
 
 

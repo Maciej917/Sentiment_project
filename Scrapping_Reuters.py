@@ -46,3 +46,4 @@ class Scrapbot:
 #scrap.openpage()
 #scrap.scrap_list_of_art(1)
 #scrap.end()
+print(help(Scrapbot))
