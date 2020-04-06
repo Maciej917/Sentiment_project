@@ -32,5 +32,5 @@ class Modifing_csv_data:
 
 ################# Przykładowe wywołanie #######################
 
-Modifing_csv_data().modifing_reuters_date("art_body_text.csv")
-Modifing_csv_data().mergingstooqwithart("art_body_text_2.csv")
+# Modifing_csv_data().modifing_reuters_date("art_body_text.csv")
+# Modifing_csv_data().mergingstooqwithart("art_body_text_2.csv")
