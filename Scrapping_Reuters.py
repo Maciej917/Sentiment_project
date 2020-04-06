@@ -28,7 +28,7 @@ class Scrapbot:
             time.sleep(2)
         for art_head in self.bot.find_elements_by_class_name('MarketStoryItem-headline-2cgfz'):
             art_heads_url_list.append(art_head.get_attribute("href"))
-        print(art_heads_url_list)
+        # print(art_heads_url_list)
 
         CSV_manipulation('art_list.csv').write_csv(art_heads_url_list)
         return art_heads_url_list
@@ -46,4 +46,3 @@ class Scrapbot:
 #scrap.openpage()
 #scrap.scrap_list_of_art(1)
 #scrap.end()
-print(help(Scrapbot))

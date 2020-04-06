@@ -1,4 +1,5 @@
 import pandas_datareader.data as web
+import pandas as pd
 
 
 class DownloadingCompanyIndex:
@@ -22,6 +23,8 @@ class DownloadingCompanyIndex:
 
 
 
-#print(DownloadingCompanyIndexFromStooq().DownloadIndex("GOOGL.US"))
+
+
+# print(DownloadingCompanyIndex().DownloadFromStooq("GOOGL.US"))
 
 
