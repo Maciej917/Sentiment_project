@@ -14,24 +14,21 @@ class Scrapping_art_page:
         art_num = 0
         art_database = []
         for art_url in art_url_list:
-            print(art_url)
-            print("-------------------------------------------------------------------------")
+            # print(art_url)
+            # print("-------------------------------------------------------------------------")
             art_num += 1
             requested_page = requests.get(art_url, headers = {'User-Agent': header})
             page_soup = BeautifulSoup(requested_page.content, 'html.parser')
             art_title = page_soup.find('h1', class_='ArticleHeader_headline')
             art_date = page_soup.find('div', class_='ArticleHeader_date')
             art_body = page_soup.find('div', class_='StandardArticleBody_body')
-            print("$$$$$$$$$$$$$$$$$$444")
-            print(type(art_body))
             article_title = art_title.get_text()
             article_date = art_date.get_text()
             art_paragraps = []
             try:
                 p_num = 0
                 for p in art_body:
-                    print(type(p))
-                    print(p)
+
                     if p.name == 'p':
                         p_num += 1
                         art_paragraps.append(p.get_text())
@@ -39,8 +36,8 @@ class Scrapping_art_page:
                 print("Something has fucked up")
             art_database.append([article_title, article_date, art_paragraps])
 
-        #df = pd.DataFrame(art_database, columns = ['title', 'date', 'body'])
-        #df.to_csv("art_body_text.csv", header=True, index=True)
+        df = pd.DataFrame(art_database, columns = ['title', 'date', 'body'])
+        df.to_csv("art_body_text.csv", header=True, index=True)
         # return df
 
 
@@ -48,6 +45,6 @@ class Scrapping_art_page:
 
 ################# Przykładowe wywołanie #######################
 
-print(Scrapping_art_page().Scrapping_articles('art_list.csv', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Safari/537.36').head(5))
+#print(Scrapping_art_page().Scrapping_articles('art_list.csv', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Safari/537.36').head(5))
 
 
