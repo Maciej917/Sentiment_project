@@ -1,63 +1,28 @@
-import pandas as pd
+from bs4 import BeautifulSoup, SoupStrainer
 import requests
-from bs4 import BeautifulSoup
+import pandas as pd
+import pickle
 import numpy as np
 
-# definiowanie URL
-ticker = {"MSFT"}
-url_test = "https://www.marketwatch.com/investing/stock/{}/profile"
-for i in ticker:
-    url = url_test.format(i)
-    print(url)
+#Scraping danych z RSS Google (bez pełnej treści)
+url = 'https://www.google.com/alerts/feeds/06940609537670719478/16876315740763892156'
 
-# tworzenie requestu
-r1 = requests.get(url)
-r1.status_code
+resp = requests.get(url)
+soup = BeautifulSoup(resp.content, "lxml")
+items = soup.findAll('entry')
+news_items = []
+print(items)
 
-coverpage = r1.content
+for entry in items:
+    news_item = {}
+    news_item['title'] = entry.title.text,
+    news_item['preview'] = entry.content.text,
+    news_item['published'] = entry.published.text,
+    news_item['updated'] = entry.updated.text,
+    news_item['link'] = entry.link['href']
+    news_items.append(news_item)
 
-soup1 = BeautifulSoup(coverpage, 'html.parser')
-coverpage_news = soup1.find_all('li', class_='fnewsitem')
-print(len(coverpage_news))
+pickle.dump(scraping,outfile)
+outfile.close()
 
-print(coverpage_news[4])
-number_of_articles = 1
-
-content_of_news = []
-list_of_links = []
-list_of_titles = []
-
-for n in np.arange(0, number_of_articles):
-
-    #linki
-    link1 = coverpage_news[n].find('a')['href']
-    link = "https://www.marketwatch.com" + link1
-    list_of_links.append(link)
-
-    #tytuły
-    title = coverpage_news[n].find('a').get_text()
-    list_of_titles.append(title)
-
-    # Treść
-    article = requests.get(link)
-    article_content = article.content
-    soup_article = BeautifulSoup(article_content, 'html5lib')
-    x = soup_article.find_all('p')
-
-
-    paragraph_list = []
-    for p in np.arange(0,len(x)):
-        paragraph = x[p].get_text()
-        paragraph_list.append(paragraph)
-        final_article = " ".join(paragraph_list)
-
-    content_of_news.append(final_article)
-
-df_features = pd.DataFrame(
-    {'Article Content': content_of_news
-     })
-
-df_show_info = pd.DataFrame(
-    {'Article Title': list_of_titles,
-     'Article Link': list_of_links})
-np.savetxt("articles.csv", ('list_of_links','list_of_titles','content_of_news')
+# stworzyć funkcję do automatycznej aktualizacji i usuwania duplikatów a potem dodającą unique ID
