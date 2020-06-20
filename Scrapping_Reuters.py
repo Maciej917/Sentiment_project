@@ -42,7 +42,7 @@ class Scrapbot:
 
 ################# Przykładowe wywołanie #######################
 
-#scrap = Scrapbot("GOOGL")
-#scrap.openpage()
-#scrap.scrap_list_of_art(1)
-#scrap.end()
+# scrap = Scrapbot("GOOGL")
+# scrap.openpage()
+# scrap.scrap_list_of_art(1)
+# scrap.end()

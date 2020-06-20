@@ -60,4 +60,5 @@ df_features = pd.DataFrame(
 df_show_info = pd.DataFrame(
     {'Article Title': list_of_titles,
      'Article Link': list_of_links})
-np.savetxt("articles.csv", ('list_of_links','list_of_titles','content_of_news')
+print(df_features)
+# np.savetxt("articles.csv", ('list_of_links','list_of_titles','content_of_news'))
